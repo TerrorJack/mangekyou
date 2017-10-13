@@ -1,0 +1,30 @@
+name: mangekyou
+version: 0.0.1
+category: Compiler
+stability: alpha
+maintainer: Shao Cheng <astrohavoc@gmail.com>
+copyright: (c) 2017 Shao Cheng
+license: BSD3
+github: TerrorJack/mangekyou
+
+extra-source-files:
+  - CHANGELOG.md
+  - LICENSE
+  - README.md
+
+custom-setup:
+  dependencies:
+    - base
+    - binary
+    - Cabal
+
+dependencies:
+  - base
+  - binary
+  - Cabal
+  - ghc
+
+ghc-options: -Wall
+
+library:
+  source-dirs: src
