@@ -1,12 +1,14 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module Mangekyou.BuildInfo where
+module Mangekyou.BuildInfo
+  ( mangekyouLocalBuildInfo
+  ) where
 
 import Data.Binary
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.ByteString.Unsafe as BS
 import Distribution.Simple.LocalBuildInfo
-import Language.Haskell.TH
+import Language.Haskell.TH.Syntax
 import System.IO.Unsafe
 
 mangekyouLocalBuildInfo :: LocalBuildInfo
@@ -17,5 +19,5 @@ mangekyouLocalBuildInfo =
            (LBS.fromStrict
               (unsafePerformIO
                  (BS.unsafePackAddressLen
-                    $(pure (LitE (IntegerL (fromIntegral (length lbi)))))
+                    $(lift (length lbi))
                     $(pure (LitE (StringPrimL lbi))))))|])
