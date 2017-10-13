@@ -1,3 +1,6 @@
 .stack-work/
 mangekyou.cabal
 mangekyou.lbi.buildinfo
+.cabal-sandbox/
+cabal.sandbox.config
+cabal.project.local
