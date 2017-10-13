@@ -21,10 +21,14 @@ custom-setup:
 dependencies:
   - base
   - binary
+  - bytestring
   - Cabal
   - ghc
+  - template-haskell
 
 ghc-options: -Wall
 
 library:
   source-dirs: src
+  other-extensions:
+    - TemplateHaskell
