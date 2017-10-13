@@ -15,9 +15,9 @@ mangekyouLocalBuildInfo :: LocalBuildInfo
 {-# NOINLINE mangekyouLocalBuildInfo #-}
 mangekyouLocalBuildInfo =
   $(do lbi <- runIO $ LBS.unpack <$> LBS.readFile "mangekyou.lbi.buildinfo"
-       [|decode
-           (LBS.fromStrict
-              (unsafePerformIO
-                 (BS.unsafePackAddressLen
-                    $(lift (length lbi))
-                    $(pure (LitE (StringPrimL lbi))))))|])
+       [|unsafePerformIO $ do
+           bs <-
+             BS.unsafePackAddressLen
+               $(lift (length lbi))
+               $(pure (LitE (StringPrimL lbi)))
+           pure $ decode $ LBS.fromStrict bs|])
